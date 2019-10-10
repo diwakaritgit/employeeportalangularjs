@@ -5,7 +5,11 @@
     filtering , Sorting and when we click on name it render details of
     employee.
 ```
+## Git clone
 
+```
+    git@github.com:diwakaritgit/employeeportalangularjs.git
+```
 
 ### Install Dependencies
 
