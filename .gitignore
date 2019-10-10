@@ -4,5 +4,14 @@ node_modules/
 app/lib/
 tmp
 .DS_Store
+
+
+**/target/
 .idea
+*.iml
+/bin/
+*.ipr
+*.iws
+
+
 
