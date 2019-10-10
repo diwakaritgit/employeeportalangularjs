@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Details</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" ng-app="myApp" ng-controller="myctrl">
+        <p> <strong>Employee Portal </strong></p>
+        <form>
+            <div class="form-group">
+                <div class="input-group" ng-show="show">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+                    <input type="text" class="form-control" placeholder="Search" ng-model="searchsearch" />
+                </div>
+            </div>
+        </form>
+        <table class="table table-bordered table-stripped">
+            <thead>
+                <tr>
+                    <td>
+                        <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+                            Name
+                            <span ng-show="sortType == 'Name' && !sortReverse" class="fa fa-caret-down" ></span>
+                            <span ng-show="sortType == 'Name' && sortReverse" class="fa fa-caret-up" ></span>
+                        </a>
+                    </td>
+
+                    <td>
+                        <a href="#" ng-click="sortType = 'Salary'; sortReverse = !sortReverse" >
+                            Salary
+                            <span ng-show="sortType == 'Salary' && !sortReverse"  class="fa fa-caret-down" ></span>
+                            <span ng-show="sortType == 'Salary' && sortReverse" class="fa fa-caret-up" ></span>
+                        </a>
+                    </td>
+
+                    <td ng-show="show1"> Age </td>
+                    <td ng-show="show1"> Country </td>
+                    <td ng-show="show1"> Address </td>
+
+
+                </tr>
+            </thead>
+            <tbody ng-show="show">
+                <tr ng-repeat="x in records | orderBy:sortType:sortReverse | filter:searchsearch" >
+                   <!-- <td> <a ng-href="angulardemo1">{{ x.Name }}</a></td> -->
+                    <td> <a ng-click="openDetails(x.Id)">{{ x.Name }}</a></td>
+                    <td>{{ x.Salary }}</td>
+                </tr>
+            </tbody>
+
+             <tbody ng-show="show1">
+                    <tr ng-repeat="emp in employeedetails | orderBy:sortType:sortReverse | filter:searchsearch">
+                        <td>{{ emp.Name }}</td>
+                        <td>{{ emp.Salary }}</td>
+                        <td>{{ emp.Age}}</td>
+                        <td>{{ emp.Country}}</td>
+                        <td>{{ emp.Address}}</td>
+                    </tr>
+
+             </tbody>
+
+
+        </table>
+<button ng-show="show1" ng-click="reloadPage();">SHOW EMPLOYEE LIST</button>
+    </div>
+    <script>
+        var app = angular.module("myApp", [])
+        app.controller("myctrl", function ($scope) {
+            $scope.show = true;
+            $scope.sortType = 'Name';
+            $scope.sortReverse = false;
+            $scope.searchsearch = '';
+            $scope.records = [
+              {
+                  "Id": 0,
+                  "Name": "Diwakar",
+                  "Country": "India",
+                  "Salary": 11000,
+                  "Age": "24",
+                  "Address": "Sector 45"
+              },
+              {
+                  "Id": 1,
+                  "Name": "Avinash",
+                  "Country": "India",
+                  "Salary": 23000,
+                  "Age": "27",
+                  "Address": "Sector 2"
+              },
+              {
+                  "Id": 2,
+                  "Name": "Payal",
+                  "Country": "India",
+                  "Salary": 30000,
+                  "Age": "26",
+                  "Address": "Sector 3"
+              },
+              {
+                   "Id": 3,
+                   "Name": "Raju",
+                   "Country": "India",
+                   "Salary": 33000,
+                   "Age": "26",
+                   "Address": "Sector 4"
+
+              },
+              {
+                  "Id": 4,
+                  "Name": "Raghu",
+                  "Country": "India",
+                  "Salary": 36000,
+                  "Age": "26",
+                  "Address": "Sector 5"
+              },
+              {
+                  "Id": 5,
+                  "Name": "Rahul",
+                  "Country": "India",
+                  "Salary": 50000,
+                  "Age": "26",
+                  "Address": "Sector 6"
+              },
+              {
+                  "Id": 6,
+                  "Name": "Seema",
+                  "Country": "India",
+                  "Salary": 80000,
+                  "Age": "26",
+                  "Address": "Sector 7"
+
+              },
+              {
+                  "Id": 7,
+                  "Name": "samuel",
+                  "Country": "India",
+                  "Salary": 39000,
+                  "Age": "26",
+                  "Address": "Sector 8"
+              }
+            ];
+
+           $scope.reloadPage = function()
+                {window.location.reload();}
+
+           $scope.openDetails = function(item) {
+                $scope.show1 = true;
+                $scope.show = false;
+                $scope.employeedetails = [
+                    {
+                        "Name":     $scope.records[item].Name,
+                        "Country":  $scope.records[item].Country,
+                        "Salary":   $scope.records[item].Salary,
+                        "Age":      $scope.records[item].Age,
+                        "Address":  $scope.records[item].Address
+                    }
+                ];
+           }
+        });
+    </script>
+</body>
+</html>
