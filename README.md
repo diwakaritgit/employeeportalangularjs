@@ -1,14 +1,15 @@
-## Project Info
+## Project Info : Employee Portal
 
 ```
-    employeedetails.html file created which containes employee details
-    filtering , Sorting and when we click on name it render details of
-    employee.
+    --> employee details 
+    --> filtering
+    --> Sorting by name , salary
+    
 ```
-## Git clone
+## Clone application
 
 ```
-    git@github.com:diwakaritgit/employeeportalangularjs.git
+    git clone https://git@github.com:diwakaritgit/employeeportalangularjs.git
 ```
 
 ### Install Dependencies
